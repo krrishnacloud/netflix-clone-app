@@ -3,4 +3,4 @@ WORKDIR /netflix
 COPY package*.json ./
 COPY . .
 RUN npm install
-CMD ["start","app.js"]
+CMD ["npm","start"]
