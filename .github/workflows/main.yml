@@ -2,25 +2,36 @@ name: netflix-clone
 
 on:
  push:
- branch: main
+   branch: 
+     - main
  jobs:
    runs-on: ubuntu-latest
 
    steps:
-     - name: Configure AWS Credentials
-       uses: aws-actions/configure-aws-credentials@v5.1.1
-       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v5.1.1
+        with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         aws-region: us-east-2
   
-     - name: Login to Amazon ECR
+      - name: Login to Amazon ECR
          id: login-ecr
          uses: aws-actions/amazon-ecr-login@v2
 
-     - name: Build Docker image
+      - name: Build Docker image
         run: |
              docker build -t --build-arg TMDB_V3_API_KEY netflix-cloneapp:${COMMIT_ID} 
              docker push ${{secrets.AWS_REPOSITORY_URL}}:latest
-     - name: Update image in deployment file
+      - name: Update image in deployment file
         run: yq e '.spec.template.spec.containers[0].image = "${{secrets.AWS_REPOSITORY_URL}}:${{ env.GITHUB_BRANCH }}" ' -i Kubernetes/deployment.yml
+      - name: Commit updated deployment
+        run: |
+          git config user.name "krrishnacloud"
+          git config user.email "krishnavemula423@gmail.com"
+          git add Kubernetes/deployment.yml
+          git commit -m "Update image to $IMAGE_TAG"
+          git push
