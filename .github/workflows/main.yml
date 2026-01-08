@@ -46,4 +46,4 @@ jobs:
           git config user.email "krishnavemula423@gmail.com"
           git add Kubernetes/Deployment.yml
           git commit -m "Update image to ${IMAGE_TAG}" || echo "No changes to commit"
-          git push
+          git push https://krrishnacloud:${{ secrets.LOGIN_GITHUB_TOKEN }}@github.com/krrishnacloud/netflix-clone-app.git
