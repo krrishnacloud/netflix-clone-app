@@ -8,10 +8,12 @@ env:
     AWS_REPOSITORY_URL: ${{ secrets.AWS_REPOSITORY_URL }}
     GITHUB_TOKEN: ${{ secrets.LOGIN_GITHUB_TOKEN }}
     LOGIN_GITHUB_USER: ${{ secrets.LOGIN_GITHUB_USER }}
+    IMAGE_TAG: ${{ github.sha }}
     
 jobs:
+   NodeJs:
      runs-on: ubuntu-latest
-      steps:
+     steps:
        - name: Configure AWS Credentials
          uses: aws-actions/configure-aws-credentials@v5.1.1
          with:
