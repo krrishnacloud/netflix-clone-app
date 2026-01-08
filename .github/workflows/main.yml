@@ -25,7 +25,7 @@ jobs:
 
        - name: Build Docker image
          run: |
-              docker build -t --build-arg TMDB_V3_API_KEY netflix-cloneapp:${COMMIT_ID} 
+              docker build -t --build-arg TMDB_V3_API_KEY netflix-cloneapp:${COMMIT_ID} .
               docker push ${{secrets.AWS_REPOSITORY_URL}}:latest
        - name: Update image in deployment file
          run: yq e '.spec.template.spec.containers[0].image = "${{secrets.AWS_REPOSITORY_URL}}:${{ env.GITHUB_BRANCH }}" ' -i Kubernetes/deployment.yml
