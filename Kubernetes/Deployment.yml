@@ -1,21 +1,21 @@
 apiVersion: app/v1
 kind: Deployment
-metadata: 
+metadata:
   name: netflix app
-  labels: 
+  labels:
     app: netflix app
 spec:
- replicas: 2
- selector:
-   matchlabels:
-     app: netflix app
- template:
-   metadata:
-     labels:
-       app: netflix app
-   spec:
-     containers:
+  replicas: 2
+  selector:
+    matchlabels:
+      app: netflix app
+  template:
+    metadata:
+      labels:
+        app: netflix app
+    spec:
+      containers:
         - name: netflix-clone
-          image: nginx:latest
+          image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:5b72b2779500197bfc7554dc015bbc0d5ee5cf7e
           ports:
-            - containerPort: 80 
+            - containerPort: 80
