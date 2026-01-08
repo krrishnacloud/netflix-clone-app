@@ -8,6 +8,8 @@ on:
 
 env:
   AWS_REPOSITORY_URL: ${{ secrets.AWS_REPOSITORY_URL }}
+  LOGIN_GITHUB_USERNAME: ${{ secrets.LOGIN_GITHUB_USERNAME }}
+  LOGIN_GITHUB_TOKEN: ${{ secrets.LOGIN_GITHUB_TOKEN }}
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
