@@ -1,0 +1,24 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: netflix-clone
+  region: ap-south-1
+  version: "1.29"
+
+
+managedNodeGroups:
+  - name: netflix-clone
+    instanceType: t3.medium
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 3
+    volumeSize: 20
+    ssh:
+      allow: true
+      publicKeyName: demo-
+    labels:
+      role: worker
+    tags:
+      nodegroup-role: workernode
+
