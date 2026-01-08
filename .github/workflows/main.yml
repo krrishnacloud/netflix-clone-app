@@ -38,7 +38,7 @@ jobs:
 
       - name: Update image in deployment file
         run: |
-          yq e ".spec.template.spec.containers[0].image = \"$AWS_REPOSITORY_URL:${IMAGE_TAG}\"" -i Kubernetes/deployment.yml
+          yq e ".spec.template.spec.containers[0].image = \"$AWS_REPOSITORY_URL:${IMAGE_TAG}\"" -i Kubernetes/Deployment.yml
 
       - name: Commit updated deployment
         run: |
