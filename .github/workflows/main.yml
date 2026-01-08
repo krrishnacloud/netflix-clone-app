@@ -44,6 +44,6 @@ jobs:
         run: |
           git config user.name "krrishnacloud"
           git config user.email "krishnavemula423@gmail.com"
-          git add Kubernetes/deployment.yml
+          git add Kubernetes/Deployment.yml
           git commit -m "Update image to ${IMAGE_TAG}" || echo "No changes to commit"
           git push
