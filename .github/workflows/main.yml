@@ -2,9 +2,9 @@ name: netflix-clone
 
 on:
  push:
-   branch: main
-      jobs:
-      runs-on: ubuntu-latest
+ branch: [ main ]
+ jobs:
+   runs-on: ubuntu-latest
 
    steps:
      - name: Configure AWS Credentials
