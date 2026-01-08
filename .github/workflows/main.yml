@@ -9,13 +9,13 @@ on:
     GITHUB_TOKEN: ${{ secrets.LOGIN_GITHUB_TOKEN }}
     LOGIN_GITHUB_USER: ${{ secrets.LOGIN_GITHUB_USER }}
     
-    jobs:
+  jobs:
        Node.js:
          runs-on: ubuntu-latest
-    steps:
-          - name: Configure AWS Credentials
-            uses: aws-actions/configure-aws-credentials@v5.1.1
-            with:
+       steps:
+           - name: Configure AWS Credentials
+             uses: aws-actions/configure-aws-credentials@v5.1.1
+             with:
               aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
               aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
               aws-region: us-east-2
