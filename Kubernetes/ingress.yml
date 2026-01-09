@@ -5,12 +5,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:netflix.cloudiandevops.com
+  - http: netflix.cloudiandevops.com
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: test
+            name: netflix-clone
             port:
               number: 80
+
