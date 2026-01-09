@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: netflix-clone
-          image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:94a0a191f7301aeca695040ed15b964dd10b7f0b
+          image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:c7f2cd29909cb98135e9964084d8ca0be4c1c67d
           ports:
             - containerPort: 80
