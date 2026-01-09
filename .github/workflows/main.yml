@@ -8,6 +8,8 @@ on:
 
 env:
   AWS_REPOSITORY_URL: ${{ secrets.AWS_REPOSITORY_URL }}
+  LOGIN_GITHUB_USERNAME: ${{ secrets.LOGIN_GITHUB_USERNAME }}
+  LOGIN_GITHUB_TOKEN: ${{ secrets.LOGIN_GITHUB_TOKEN }}
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
@@ -16,14 +18,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - uses: actions/checkout@v3
+        with:
+           token: ${{ secrets.LOGIN_GITHUB_TOKEN }}
+
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: ap-south-1
 
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
@@ -38,12 +45,12 @@ jobs:
 
       - name: Update image in deployment file
         run: |
-          yq e ".spec.template.spec.containers[0].image = \"$AWS_REPOSITORY_URL:${IMAGE_TAG}\"" -i Kubernetes/deployment.yml
+          yq e ".spec.template.spec.containers[0].image = \"$AWS_REPOSITORY_URL:${IMAGE_TAG}\"" -i Kubernetes/Deployment.yml
 
       - name: Commit updated deployment
         run: |
           git config user.name "krrishnacloud"
           git config user.email "krishnavemula423@gmail.com"
-          git add Kubernetes/deployment.yml
-          git commit -m "Update image to ${IMAGE_TAG}" || echo "No changes to commit"
+          git add Kubernetes/Deployment.yml
+          git commit -m "Update image to ${IMAGE_TAG}"
           git push
