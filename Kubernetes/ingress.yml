@@ -7,13 +7,13 @@ metadata:
 spec:
   ingressClassName: nginx 
   rules:
-    - host: netflixclone-demo.cloudiandevops.com      # Replace with your domain or use a dummy domain for testing
+    - host: netflixclone.saidev.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: netflix-app-service # Name of your service
+                name: netflix-app-service 
                 port:
                   number: 80 
