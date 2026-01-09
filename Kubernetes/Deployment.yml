@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: netflix app
   labels:
-    app: netflix app
+    app: netflix-app
 spec:
   replicas: 2
   selector:
-    matchlabels:
-      app: netflix app
+    matchLabeLs:
+      app: netflix-app
   template:
     metadata:
       labels:
-        app: netflix app
+        app: netflix-app
     spec:
       containers:
         - name: netflix-clone
