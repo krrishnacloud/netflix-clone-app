@@ -18,7 +18,3 @@ spec:
                 name: netflix-app-service
                 port:
                   number: 80
-<<<<<<< HEAD
-
-=======
->>>>>>> b6620abf30a0dc4f02cddd43cdf39249c0d06f77
