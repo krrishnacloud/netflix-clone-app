@@ -15,12 +15,11 @@ spec:
         app: netflix-app
     spec:
       containers:
-      - name: netflix-app
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-        - name: netflix-clone
-          image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:fabaf1e2ca630e016ac3f96903520fa96835f09f
+        - name: netflix-app
+          image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:6911ce60d763361ac684079869f6ec84f65093de
           ports:
             - containerPort: 80
-
+            - name: netflix-clone
+              image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:fabaf1e2ca630e016ac3f96903520fa96835f09f
+              ports:
+                - containerPort: 80
