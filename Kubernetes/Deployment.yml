@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: netflix-app
   labels:
-    app: nginx
+    app: netflix-app
 spec:
   replicas: 3
   selector:
@@ -15,12 +15,7 @@ spec:
         app: netflix-app
     spec:
       containers:
-      - name: netflix-app
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-        - name: netflix-clone
-          image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:fabaf1e2ca630e016ac3f96903520fa96835f09f
+        - name: netflix-app
+          image: 078724664036.dkr.ecr.ap-south-1.amazonaws.com/netflix-cloneapp:22e6723f16f8747849f2a92b971ec69e03a4a189
           ports:
             - containerPort: 80
-
